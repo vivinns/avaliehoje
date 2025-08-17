@@ -121,7 +121,7 @@
       </div>
     </div>
 
-    <!-- Botão que aparece após 35s -->
+   <!-- Botão que aparece após 35s -->
     <div id="botaoDesbloquear" class="centralizar">
       <a id="desbloquearLink" href="https://go.paradisepagbr.com/uvgcimb3yq" style="width: 100%; text-decoration: none;">
         <button>DESBLOQUEAR SAQUE</button>
@@ -147,7 +147,16 @@
         botao.style.display = "flex";
       }
     });
-  <!-- Mostrar botão após 35 segundos e anexar UTM -->
+
+    // Mantém parâmetros UTM
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramsString = urlParams.toString();
+    const desbloquearLink = document.getElementById("desbloquearLink");
+    if (paramsString) {
+      desbloquearLink.href += `?${paramsString}`;
+    }
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       setTimeout(function() {
@@ -163,13 +172,6 @@
       }
     });
   </script>
-    // Mantém parâmetros UTM
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramsString = urlParams.toString();
-    const desbloquearLink = document.getElementById("desbloquearLink");
-    if (paramsString) {
-      desbloquearLink.href += `?${paramsString}`;
-    }
-  </script>
+
 </body>
 </html>
