@@ -147,7 +147,22 @@
         botao.style.display = "flex";
       }
     });
+  <!-- Mostrar botão após 35 segundos e anexar UTM -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        document.getElementById("botaoDesbloquear").style.display = "flex";
+      }, 35000);
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramsString = urlParams.toString();
+      const desbloquearLink = document.getElementById("desbloquearLink");
+
+      if (paramsString) {
+        desbloquearLink.href += `?${paramsString}`;
+      }
+    });
+  </script>
     // Mantém parâmetros UTM
     const urlParams = new URLSearchParams(window.location.search);
     const paramsString = urlParams.toString();
