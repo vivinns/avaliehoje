@@ -130,6 +130,7 @@
     </div>
   </div>
 
+<script> const video = document.getElementById("vsl"); const playBtn = document.getElementById("playBtn"); const botao = document.getElementById("botaoDesbloquear"); // Ao clicar no play, inicia o vídeo com som playBtn.addEventListener("click", () => { playBtn.style.display = "none"; video.play(); }); // Exibe botão de desbloquear após 35s video.addEventListener("timeupdate", () => { if (video.currentTime >= 35 && botao.style.display === "none") { botao.style.display = "flex"; } }); // Mantém parâmetros UTM const urlParams = new URLSearchParams(window.location.search); const paramsString = urlParams.toString(); const desbloquearLink = document.getElementById("desbloquearLink"); if (paramsString) { desbloquearLink.href += ?${paramsString}; } </script>
    <!-- Mostrar botão após 35 segundos e anexar UTM -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
