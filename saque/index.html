@@ -50,7 +50,6 @@
     #produto1 h4 { color: #1DB954; margin-bottom: 10px; }
     .centralizar { display: flex; justify-content: center; align-items: center; width: 100%; position: relative; }
     video { width: 100%; background: black; }
-
     /* Overlay estilo botão verde */
     #overlaySom {
       position: absolute;
@@ -130,49 +129,32 @@
     </div>
   </div>
 
-<script> const video = document.getElementById("vsl"); const playBtn = document.getElementById("playBtn"); const botao = document.getElementById("botaoDesbloquear"); // Ao clicar no play, inicia o vídeo com som playBtn.addEventListener("click", () => { playBtn.style.display = "none"; video.play(); }); // Exibe botão de desbloquear após 35s video.addEventListener("timeupdate", () => { if (video.currentTime >= 35 && botao.style.display === "none") { botao.style.display = "flex"; } }); // Mantém parâmetros UTM const urlParams = new URLSearchParams(window.location.search); const paramsString = urlParams.toString(); const desbloquearLink = document.getElementById("desbloquearLink"); if (paramsString) { desbloquearLink.href += ?${paramsString}; } </script>
-   <!-- Mostrar botão após 35 segundos e anexar UTM -->
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      setTimeout(function() {
-        document.getElementById("botaoDesbloquear").style.display = "flex";
-      }, 35000);
+    const video = document.getElementById("vsl");
+    const overlaySom = document.getElementById("overlaySom");
+    const botao = document.getElementById("botaoDesbloquear");
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramsString = urlParams.toString();
-      const desbloquearLink = document.getElementById("desbloquearLink");
+    // Ativar som ao clicar no overlay
+    overlaySom.addEventListener("click", () => {
+      video.muted = false;
+      overlaySom.style.display = "none";
+      video.play();
+    });
 
-      if (paramsString) {
-        desbloquearLink.href += `?${paramsString}`;
+    // Mostrar botão desbloqueio após 35s
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= 35 && botao.style.display === "none") {
+        botao.style.display = "flex";
       }
     });
+
+    // Mantém parâmetros UTM
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramsString = urlParams.toString();
+    const desbloquearLink = document.getElementById("desbloquearLink");
+    if (paramsString) {
+      desbloquearLink.href += `?${paramsString}`;
+    }
   </script>
-  
-  <script>
-  // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
-  const link = 'https://avaliehoje.vercel.app/saque';
-
-  function setBackRedirect(url) {
-    let urlBackRedirect = url;
-    urlBackRedirect = urlBackRedirect =
-      urlBackRedirect.trim() +
-      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
-      document.location.search.replace('?', '').toString();
-
-    history.pushState({}, '', location.href);
-    history.pushState({}, '', location.href);
-    history.pushState({}, '', location.href);
-
-    window.addEventListener('popstate', () => {
-      console.log('onpopstate', urlBackRedirect);
-      setTimeout(() => {
-        location.href = urlBackRedirect;
-      }, 1);
-    });
-  }
-
-  setBackRedirect(link);
-</script>
-
 </body>
 </html>
